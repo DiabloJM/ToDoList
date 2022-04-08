@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './List'
 import {v4 as uuidv4} from 'uuid';
+import './Todo.css';
 
 class Todo extends Component {
     constructor() {
@@ -45,12 +46,13 @@ class Todo extends Component {
             this.setState({
                 task: '',
                 items: [
-                    ...this.state.items,
+                   
                     {
                         id: uuidv4(),
                         task: this.state.task,
                         complete: false
-                    }
+                    },
+                    ...this.state.items
                 ]
             })
         }
@@ -65,6 +67,22 @@ class Todo extends Component {
 
         foundTask.complete = true;
 
+        this.setState({
+            items: [
+                ...this.state.items,
+            ]
+        })
+    }
+
+    markAsIncompleted = id => {
+        const {items} = this.state;
+
+        const foundTask = items.find(
+            item => item.id === id
+        );
+
+        foundTask.complete = false;
+            console.log(foundTask);
         this.setState({
             items: [
                 ...this.state.items,
@@ -101,6 +119,7 @@ class Todo extends Component {
 
                <List 
                     items = {this.state.items}
+                    markAsIncompleted={this.markAsIncompleted}
                     markAsCompleted = {this.markAsCompleted}
                     removeTask = {this.removeTask}
                 />
