@@ -1,0 +1,19 @@
+.Animation{
+    background-color: red;
+}
+
+.Animation .transition{
+    transition: all 3s ease 0s;
+    transform: rotate(180deg);
+    transform-origin: center center;
+    color: purple;
+    font-size: 30px;
+    padding-bottom: 10px;
+    opacity: 0;
+}
+
+.Animation .transition.show{
+    padding-bottom: 200px;
+    background-color:red;
+    opacity: 1;
+}
